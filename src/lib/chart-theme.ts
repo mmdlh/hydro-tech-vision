@@ -1,5 +1,16 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-export type ChartOption = Record<string, any>;
+export type ChartOption = {
+  legend?: any;
+  tooltip?: any;
+  xAxis?: any;
+  yAxis?: any;
+  grid?: any;
+  series?: any;
+  radar?: any;
+  color?: any;
+  textStyle?: any;
+  [key: string]: any;
+};
 
 export const palette = [
   "#00f2fe",

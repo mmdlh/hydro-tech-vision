@@ -10,15 +10,22 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as EmergencyRouteImport } from './routes/emergency'
 import { Route as EnergyRouteImport } from './routes/energy'
 import { Route as EquipmentRouteImport } from './routes/equipment'
 import { Route as PipelineRouteImport } from './routes/pipeline'
 import { Route as ProcessRouteImport } from './routes/process'
+import { Route as ReportsRouteImport } from './routes/reports'
 import { Route as WaterQualityRouteImport } from './routes/water-quality'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EmergencyRoute = EmergencyRouteImport.update({
+  id: '/emergency',
+  path: '/emergency',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EnergyRoute = EnergyRouteImport.update({
@@ -41,6 +48,11 @@ const ProcessRoute = ProcessRouteImport.update({
   path: '/process',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ReportsRoute = ReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const WaterQualityRoute = WaterQualityRouteImport.update({
   id: '/water-quality',
   path: '/water-quality',
@@ -49,52 +61,76 @@ const WaterQualityRoute = WaterQualityRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/emergency': typeof EmergencyRoute
   '/energy': typeof EnergyRoute
   '/equipment': typeof EquipmentRoute
   '/pipeline': typeof PipelineRoute
   '/process': typeof ProcessRoute
+  '/reports': typeof ReportsRoute
   '/water-quality': typeof WaterQualityRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/emergency': typeof EmergencyRoute
   '/energy': typeof EnergyRoute
   '/equipment': typeof EquipmentRoute
   '/pipeline': typeof PipelineRoute
   '/process': typeof ProcessRoute
+  '/reports': typeof ReportsRoute
   '/water-quality': typeof WaterQualityRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/emergency': typeof EmergencyRoute
   '/energy': typeof EnergyRoute
   '/equipment': typeof EquipmentRoute
   '/pipeline': typeof PipelineRoute
   '/process': typeof ProcessRoute
+  '/reports': typeof ReportsRoute
   '/water-quality': typeof WaterQualityRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/energy' | '/equipment' | '/pipeline' | '/process' | '/water-quality'
-  fileRoutesByTo: FileRoutesByTo
-  to:
-    '/' | '/energy' | '/equipment' | '/pipeline' | '/process' | '/water-quality'
-  id:
-    | '__root__'
     | '/'
+    | '/emergency'
     | '/energy'
     | '/equipment'
     | '/pipeline'
     | '/process'
+    | '/reports'
+    | '/water-quality'
+  fileRoutesByTo: FileRoutesByTo
+  to:
+    | '/'
+    | '/emergency'
+    | '/energy'
+    | '/equipment'
+    | '/pipeline'
+    | '/process'
+    | '/reports'
+    | '/water-quality'
+  id:
+    | '__root__'
+    | '/'
+    | '/emergency'
+    | '/energy'
+    | '/equipment'
+    | '/pipeline'
+    | '/process'
+    | '/reports'
     | '/water-quality'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  EmergencyRoute: typeof EmergencyRoute
   EnergyRoute: typeof EnergyRoute
   EquipmentRoute: typeof EquipmentRoute
   PipelineRoute: typeof PipelineRoute
   ProcessRoute: typeof ProcessRoute
+  ReportsRoute: typeof ReportsRoute
   WaterQualityRoute: typeof WaterQualityRoute
 }
 
@@ -105,6 +141,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/emergency': {
+      id: '/emergency'
+      path: '/emergency'
+      fullPath: '/emergency'
+      preLoaderRoute: typeof EmergencyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/energy': {
@@ -135,6 +178,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProcessRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/reports': {
+      id: '/reports'
+      path: '/reports'
+      fullPath: '/reports'
+      preLoaderRoute: typeof ReportsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/water-quality': {
       id: '/water-quality'
       path: '/water-quality'
@@ -147,10 +197,12 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  EmergencyRoute: EmergencyRoute,
   EnergyRoute: EnergyRoute,
   EquipmentRoute: EquipmentRoute,
   PipelineRoute: PipelineRoute,
   ProcessRoute: ProcessRoute,
+  ReportsRoute: ReportsRoute,
   WaterQualityRoute: WaterQualityRoute,
 }
 export const routeTree = rootRouteImport
