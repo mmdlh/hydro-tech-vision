@@ -73,8 +73,8 @@ export function GlowNumber({
 }: {
   value: number;
   decimals?: number;
-  unit?: string;
-  tone?: "cyan" | "ok" | "warn" | "danger" | "techblue";
+  unit?: string | undefined;
+  tone?: "cyan" | "ok" | "warn" | "danger" | "techblue" | undefined;
 }) {
   const shown = useCountUp(value, decimals);
   const toneClass = {
@@ -161,7 +161,7 @@ const toneMap: Record<string, string> = {
 
 export function Tag({ tone = "info", children }: { tone?: keyof typeof toneMap | string; children: ReactNode }) {
   return (
-    <span className={`inline-flex items-center gap-1 rounded-md border px-2 py-0.5 text-[11px] ${toneMap[tone] ?? toneMap.info}`}>
+    <span className={`inline-flex items-center gap-1 rounded-md border px-2 py-0.5 text-[11px] ${toneMap[tone] ?? toneMap['info']}`}>
       {children}
     </span>
   );
