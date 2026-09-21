@@ -1,12 +1,12 @@
 import { useEffect, useRef } from "react";
-import type { EChartsOption } from "echarts";
+import type { ChartOption } from "@/lib/chart-theme";
 
 export function EChart({
   option,
   height = 280,
   className = "",
 }: {
-  option: EChartsOption;
+  option: ChartOption;
   height?: number;
   className?: string;
 }) {

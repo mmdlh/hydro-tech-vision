@@ -1,4 +1,5 @@
-import type { EChartsOption } from "echarts";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+export type ChartOption = Record<string, any>;
 
 export const palette = [
   "#00f2fe",
@@ -22,7 +23,7 @@ const axisCommon = {
  * Legend is ALWAYS pinned to the top (top: 10) with grid.top: 56 so it can
  * never overlap the plotting area. Spread this FIRST and put overrides LAST.
  */
-export function baseOption(): EChartsOption {
+export function baseOption(): ChartOption {
   return {
     color: palette,
     textStyle: { color: "#cfe8f7", fontFamily: "Rajdhani, sans-serif" },
@@ -49,7 +50,7 @@ export function baseOption(): EChartsOption {
 }
 
 /** Base for non-cartesian charts (pie / radar / gauge): no grid or axes. */
-export function roundBase(): EChartsOption {
+export function roundBase(): ChartOption {
   return {
     color: palette,
     textStyle: { color: "#cfe8f7", fontFamily: "Rajdhani, sans-serif" },
